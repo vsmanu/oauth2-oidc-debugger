@@ -86,6 +86,8 @@ git clone https://github.com/rcbj/oauth2-oidc-debugger.git
 dnf install docker
 systemctl start docker
 cd oauth2-oidc-debugger
+mkdir -p ./proxy/certs
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout ./proxy/certs/selfsigned.key -out ./proxy/certs/selfsigned.crt -subj "/C=DE/ST=Bavaria/L=Munich/O=Dis/CN=localhost"
 sudo CONFIG_FILE=./env/local.js docker-compose build
 sudo CONFIG_FILE=./env/local.js docker-compose up
 ```
